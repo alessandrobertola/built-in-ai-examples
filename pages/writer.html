@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <title>API Writer - built-in AI</title>
+  <link
+    rel="stylesheet"
+    href="/src/style.css"
+  >
+</head>
+
+<body>
+  <script
+    type="module"
+    src="/src/features/writer.ts"
+  ></script>
+  <div id="app">
+    <a href="/" class="back-link">← Torna indietro</a>
+
+    <h1>API Writer</h1>
+    <p class="api-description">Create new content that follows a specified writing task.</p>
+
+    <div class="exercise-container">
+      <div class="exercise-card">
+        <h2>Writer</h2>
+        <div class="exercise-body">
+          <div class="settings-group">
+            <div class="setting-item">
+              <label for="tone">Tone:</label>
+              <select id="tone">
+                <option value="formal">Formal</option>
+                <option value="neutral" selected>Neutral</option>
+                <option value="casual">Casual</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label for="length">Length:</label>
+              <select id="length">
+                <option value="short" selected>Short</option>
+                <option value="medium">Medium</option>
+                <option value="long">Long</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label for="format">Format:</label>
+              <select id="format">
+                <option value="markdown" selected>Markdown</option>
+                <option value="plain-text">Plain text</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label for="output-language">Output Language:</label>
+              <select id="output-language">
+                <!-- Le opzioni vengono generate dinamicamente da writer.ts -->
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Input (Prompt/Instruction)</label>
+            <textarea
+              id="input"
+              placeholder="Describe what you want to be written..."
+            ></textarea>
+          </div>
+          <div class="input-group">
+            <label>Shared Context (Optional)</label>
+            <textarea
+              id="context"
+              placeholder="When writing multiple outputs, a shared context can help the model create content better aligned with your expectations..."
+            ></textarea>
+          </div>
+          <div class="action-group">
+            <button id="btn">Write</button>
+            <button
+              id="destroy-btn"
+              class="destroy-btn"
+            >Cancella sessione</button>
+          </div>
+          <div class="output-group">
+            <label>Result</label>
+            <div
+              id="output"
+              class="output-content"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p id="info"></p>
+  </div>
+</body>
+
+</html>

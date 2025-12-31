@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <title>API Proofreader - built-in AI</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+  <script type="module" src="/src/features/proofreader.ts"></script>
+  <div id="app">
+    <a href="/" class="back-link">← Torna indietro</a>
+    
+    <h1>API Proofreader</h1>
+    <p class="api-description">Provide interactive correction for your users.</p>
+    
+    <div class="exercise-container">
+      <div class="exercise-card">
+        <h2>Proofreader</h2>
+        <div class="exercise-body">
+          <div class="input-group">
+            <label>Input (Text to Correct)</label>
+            <textarea id="input" placeholder="Paste the text to correct..."></textarea>
+          </div>
+          <div class="action-group">
+            <button id="btn">Correct</button>
+          </div>
+          <div class="output-group">
+            <label>Result</label>
+            <div
+              id="output"
+              class="output-content"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+

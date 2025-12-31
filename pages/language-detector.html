@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/vite.svg"
+  >
+  <title>API Language Detector - built-in AI</title>
+  <link
+    rel="stylesheet"
+    href="/src/style.css"
+  >
+</head>
+
+<body>
+  <script
+    type="module"
+    src="/src/features/language-detector.ts"
+  ></script>
+  <div id="app">
+    <a
+      href="/"
+      class="back-link"
+    >← Torna indietro</a>
+
+    <h1>API Language Detector</h1>
+    <p class="api-description">Detect the language of input text.</p>
+
+    <div class="exercise-container">
+      <div class="exercise-card">
+        <h2>Language Detector</h2>
+        <div class="exercise-body">
+          <div class="input-group">
+            <label>Input (Text)</label>
+            <textarea
+              id="input"
+              placeholder="Type text in any language..."
+            ></textarea>
+          </div>
+          <div class="action-group">
+            <button id="btn">Detect Language</button>
+          </div>
+          <div class="output-group">
+            <label>Result</label>
+            <div
+              id="output"
+              class="output-content"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p id="info"></p>
+    <button
+      id="destroy-btn"
+      class="destroy-btn"
+    >Cancella sessione</button>
+  </div>
+</body>
+</html>

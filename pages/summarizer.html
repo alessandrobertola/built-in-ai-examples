@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/vite.svg"
+  >
+  <title>API Summarizer - built-in AI</title>
+  <link
+    rel="stylesheet"
+    href="/src/style.css"
+  >
+</head>
+
+<body>
+  <script
+    type="module"
+    src="/src/features/summarizer.ts"
+  ></script>
+  <div id="app">
+    <a
+      href="/"
+      class="back-link"
+    >← Torna indietro</a>
+
+    <h1>API Summarizer</h1>
+    <p class="api-description">Summarize long-form content to make it more accessible.</p>
+
+    <div class="exercise-container">
+      <div class="exercise-card">
+        <h2>Summarizer</h2>
+        <div class="exercise-body">
+          <div class="settings-group">
+            <div class="setting-item">
+              <label for="summary-type">Summary Type:</label>
+              <select id="summary-type">
+                <option value="key-points">Key Points</option>
+                <option value="tldr">TL;DR</option>
+                <option value="teaser">Teaser</option>
+                <option value="headline">Headline</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label for="length">Length:</label>
+              <select id="length">
+                <option value="short">Short</option>
+                <option value="medium">Medium</option>
+                <option value="long">Long</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label for="format">Format:</label>
+              <select id="format">
+                <option value="markdown">Markdown</option>
+                <option value="plain-text">Plain text</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <label for="output-language">Output Language:</label>
+              <select id="output-language">
+                <!-- Le opzioni vengono generate dinamicamente da summarizer.ts -->
+              </select>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Input (Long Text)</label>
+            <textarea
+              id="input"
+              placeholder="Paste a long text to summarize..."
+            ></textarea>
+          </div>
+          <div class="action-group">
+            <button id="btn">Summarize</button>
+            <button
+              id="destroy-btn"
+              class="destroy-btn"
+            >Cancella sessione</button>
+          </div>
+          <div class="output-group">
+            <label>Result</label>
+            <div
+              id="output"
+              class="output-content"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p id="info"></p>
+  </div>
+</body>
+</html>

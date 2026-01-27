@@ -21,7 +21,7 @@ let writer: Writer | null = null;
 
 const initWriter = async (): Promise<Writer | null> => {
   if (!('Writer' in self)) {
-    logWriter('non disponibile nel browser');
+    logWriter('not available in browser');
     return null;
   }
 
@@ -32,16 +32,16 @@ const initWriter = async (): Promise<Writer | null> => {
     length: lengthSelect?.value as WriterLength,
   });
 
-  logWriter(`stato: ${availability}`);
+  logWriter(`status: ${availability}`);
   if (availability === 'unavailable') {
-    logWriter('non disponibile');
+    logWriter('not available');
     return null;
   }
 
-  // Disabilita le select dopo la creazione
+  // Disable selects after creation
   setSelectsEnabled(false);
 
-  logWriter(`Creazione writer con parametri: tone=${toneSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
+  logWriter(`Creating writer with parameters: tone=${toneSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
 
   const options: WriterCreateCoreOptions = {
     outputLanguage: outputLanguageSelect?.value ?? 'en',
@@ -56,7 +56,7 @@ const initWriter = async (): Promise<Writer | null> => {
     monitor(m) {
       m.addEventListener('downloadprogress', (e) => {
         const p = ((e.loaded / e.total) * 100).toFixed(0);
-        logWriter(`stato: ${availability} - caricamento: ${p}%`);
+        logWriter(`status: ${availability} - loading: ${p}%`);
       });
     },
   });
@@ -70,11 +70,11 @@ if (btn && input && output) {
     }
 
     if (!input.value.trim()) {
-      logWriter('Inserisci un prompt');
+      logWriter('Enter a prompt');
       return;
     }
 
-    logWriter('Avvio scrittura...');
+    logWriter('Starting writing...');
     const stream = writer.writeStreaming(input.value.trim(), {
       context: contextInput?.value.trim() || undefined,
     });
@@ -84,10 +84,10 @@ if (btn && input && output) {
       output.innerHTML += chunk;
     }
 
-    // facoltativo, se non lo facciamo il markdown non viene renderizzato correttamente
+    // optional, if we don't do this the markdown won't be rendered correctly
     output!.innerHTML = await marked.parse(output.innerHTML);
 
-    logWriter('Scrittura completata');
+    logWriter('Writing completed');
   });
 }
 
@@ -96,11 +96,11 @@ if (destroyBtn) {
     if (writer) {
       writer.destroy();
       writer = null;
-      // Riabilita le select dopo la distruzione
+      // Re-enable selects after destruction
       setSelectsEnabled(true);
-      logWriter('Sessione cancellata');
+      logWriter('Session cleared');
     } else {
-      logWriter('Sessione non disponibile');
+      logWriter('Session not available');
     }
   });
 }

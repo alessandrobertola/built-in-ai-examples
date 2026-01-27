@@ -21,7 +21,7 @@ let rewriter: Rewriter | null = null;
 
 const initRewriter = async (): Promise<Rewriter | null> => {
   if (!('Rewriter' in self)) {
-    logRewriter('non disponibile nel browser');
+    logRewriter('not available in browser');
     return null;
   }
 
@@ -32,16 +32,16 @@ const initRewriter = async (): Promise<Rewriter | null> => {
     length: lengthSelect?.value as RewriterLength,
   });
 
-  logRewriter(`stato: ${availability}`);
+  logRewriter(`status: ${availability}`);
   if (availability === 'unavailable') {
-    logRewriter('non disponibile');
+    logRewriter('not available');
     return null;
   }
 
-  // Disabilita le select dopo la creazione
+  // Disable selects after creation
   setSelectsEnabled(false);
 
-  logRewriter(`Creazione rewriter con parametri: tone=${toneSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
+  logRewriter(`Creating rewriter with parameters: tone=${toneSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
 
   const options: RewriterCreateCoreOptions = {
     outputLanguage: outputLanguageSelect?.value ?? 'en',
@@ -56,7 +56,7 @@ const initRewriter = async (): Promise<Rewriter | null> => {
     monitor(m) {
       m.addEventListener('downloadprogress', (e) => {
         const p = ((e.loaded / e.total) * 100).toFixed(0);
-        logRewriter(`stato: ${availability} - caricamento: ${p}%`);
+        logRewriter(`status: ${availability} - loading: ${p}%`);
       });
     },
   });
@@ -70,11 +70,11 @@ if (btn && input && output) {
     }
 
     if (!input.value.trim()) {
-      logRewriter('Inserisci un prompt');
+      logRewriter('Enter text to rewrite');
       return;
     }
 
-    logRewriter('Avvio riscrittura...');
+    logRewriter('Starting rewrite...');
     const stream = rewriter.rewriteStreaming(input.value.trim(), {
       context: contextInput?.value.trim() || undefined,
     });
@@ -84,10 +84,10 @@ if (btn && input && output) {
       output.innerHTML += chunk;
     }
 
-    // facoltativo, se non lo facciamo il markdown non viene renderizzato correttamente
+    // optional, if we don't do this the markdown won't be rendered correctly
     output!.innerHTML = await marked.parse(output.innerHTML);
 
-    logRewriter('Riscrittura completata');
+    logRewriter('Rewrite completed');
   });
 }
 
@@ -96,11 +96,11 @@ if (destroyBtn) {
     if (rewriter) {
       rewriter.destroy();
       rewriter = null;
-      // Riabilita le select dopo la distruzione
+      // Re-enable selects after destruction
       setSelectsEnabled(true);
-      logRewriter('Sessione cancellata');
+      logRewriter('Session cleared');
     } else {
-      logRewriter('Sessione non disponibile');
+      logRewriter('Session not available');
     }
   });
 }
@@ -116,4 +116,3 @@ const setSelectsEnabled = (enabled: boolean): void => {
   if (formatSelect) formatSelect.disabled = !enabled;
   if (outputLanguageSelect) outputLanguageSelect.disabled = !enabled;
 };
-

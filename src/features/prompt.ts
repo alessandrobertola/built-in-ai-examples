@@ -12,33 +12,33 @@ let languageModel: LanguageModel | null = null;
 
 const initPrompt = async (): Promise<LanguageModel | null> => {
   if (!('LanguageModel' in self)) {
-    logPrompt('non disponibile nel browser');
+    logPrompt('not available in browser');
     return null;
   }
 
   const availability = await LanguageModel.availability(
   );
 
-  logPrompt(`stato: ${availability}`);
+  logPrompt(`status: ${availability}`);
   if (availability === 'unavailable') {
-    logPrompt('non disponibile');
+    logPrompt('not available');
     return null;
   }
 
-  logPrompt('Creazione prompt...');
+  logPrompt('Creating prompt...');
 
   return await LanguageModel.create(
     {
       initialPrompts: [
         {
           role: 'user',
-          content: 'Sei un giardiniere esperto. Dammi consigli per la piantagione di un giardino.'
+          content: 'You are an expert gardener. Give me advice for planting a garden.'
         }
       ],
       monitor(m) {
         m.addEventListener('downloadprogress', (e) => {
           const p = ((e.loaded / e.total) * 100).toFixed(0);
-          logPrompt(`stato: ${availability} - caricamento: ${p}%`);
+          logPrompt(`status: ${availability} - loading: ${p}%`);
         });
       },
     }
@@ -52,7 +52,7 @@ if (btn && input && output) {
       if (!languageModel) return;
     }
 
-    logPrompt('Avvio prompt...');
+    logPrompt('Starting prompt...');
     const stream = languageModel.promptStreaming(input.value);
     output.innerHTML = '';
 
@@ -60,10 +60,10 @@ if (btn && input && output) {
       output.innerHTML += chunk;
     }
 
-    // facoltativo, se non lo facciamo il markdown non viene renderizzato correttamente
+    // optional, if we don't do this the markdown won't be rendered correctly
     output!.innerHTML = await marked.parse(output.innerHTML);
 
-    logPrompt('Prompt completato');
+    logPrompt('Prompt completed');
   });
 }
 
@@ -72,9 +72,9 @@ if (destroyBtn) {
     if (languageModel) {
       languageModel.destroy();
       languageModel = null;
-      logPrompt('Sessione cancellata');
+      logPrompt('Session cleared');
     } else {
-      logPrompt('Sessione non disponibile');
+      logPrompt('Session not available');
     }
   });
 }

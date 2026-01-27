@@ -12,25 +12,25 @@ let languageDetector: LanguageDetector | null = null;
 
 const initLanguageDetector = async (): Promise<LanguageDetector | null> => {
   if (!('LanguageDetector' in self)) {
-    log(context, 'non disponibile nel browser');
+    log(context, 'not available in browser');
     return null;
   }
 
   const availability = await LanguageDetector.availability();
 
   if (availability === 'unavailable') {
-    log(context, 'non disponibile');
+    log(context, 'not available');
     return null;
   }
 
-  log(context, `stato: ${availability}`);
+  log(context, `status: ${availability}`);
   return await LanguageDetector.create();
 };
 
 
 btn.addEventListener('click', async () => {
   if (!('LanguageDetector' in self)) {
-    log(context, 'non disponibile nel browser');
+    log(context, 'not available in browser');
     return null;
   }
 
@@ -48,6 +48,6 @@ destroyBtn.addEventListener('click', () => {
   if (languageDetector) {
     languageDetector.destroy();
     languageDetector = null;
-    log(context, 'Sessione cancellata');
+    log(context, 'Session cleared');
   }
 });

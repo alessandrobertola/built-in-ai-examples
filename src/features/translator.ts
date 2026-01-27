@@ -68,7 +68,7 @@ export async function translateText(
   }
 }
 
-// Popola i select con le lingue disponibili
+// Populate selects with available languages
 populateLanguageSelect(inputLang, true, 'auto');
 populateLanguageSelect(outputLang, false, 'en');
 
@@ -88,24 +88,24 @@ const logDetector = (text: string) => {
 
 const initLanguageDetector = async (): Promise<LanguageDetector | null> => {
   if (!('LanguageDetector' in self)) {
-    logDetector('non disponibile nel browser');
+    logDetector('not available in browser');
     return null;
   }
 
   const availability = await LanguageDetector.availability();
   if (availability === 'unavailable') {
-    logDetector('non disponibile');
+    logDetector('not available');
     return null;
   }
 
-  logDetector(`stato: ${availability}`);
+  logDetector(`status: ${availability}`);
 
   return await LanguageDetector.create(
     {
       monitor(m) {
         m.addEventListener('downloadprogress', (e) => {
           const p = ((e.loaded / e.total) * 100).toFixed(0);
-          logDetector(`stato: ${availability} - caricamento: ${p}%`);
+          logDetector(`status: ${availability} - loading: ${p}%`);
         });
       },
     }
@@ -115,7 +115,7 @@ const initLanguageDetector = async (): Promise<LanguageDetector | null> => {
 const initTranslator = async (languageInput: string, languageOutput: string): Promise<Translator | null> => {
   
   if (!('Translator' in self)) {
-    logTranslator('non disponibile');
+    logTranslator('not available');
     return null;
   }
 
@@ -124,7 +124,7 @@ const initTranslator = async (languageInput: string, languageOutput: string): Pr
     targetLanguage: languageOutput,
   });
 
-  logTranslator(`stato: ${availability}`);
+  logTranslator(`status: ${availability}`);
   if (availability === 'unavailable') return null;
 
   inputLang.disabled = true;
@@ -136,7 +136,7 @@ const initTranslator = async (languageInput: string, languageOutput: string): Pr
     monitor(m) {
       m.addEventListener('downloadprogress', (e) => {
         const p = ((e.loaded / e.total) * 100).toFixed(0);
-        logTranslator(`stato: ${availability} - caricamento: ${p}%`);
+        logTranslator(`status: ${availability} - loading: ${p}%`);
       });
     },
   });
@@ -150,11 +150,11 @@ btn.addEventListener('click', async () => {
     }
     const language = await languageDetector.detect(input.value);
     inputLang.value = language[0].detectedLanguage ?? 'en';
-    logDetector(`lingua rilevata: ${inputLang.value}`);
+    logDetector(`detected language: ${inputLang.value}`);
   }
 
   if (!translator) {
-    // Inizializza il translator se non è già stato creato
+    // Initialize the translator if it hasn't been created yet
     translator = await initTranslator(inputLang.value, outputLang.value);
     if (!translator) return;
   }
@@ -172,18 +172,18 @@ destroyBtn.addEventListener('click', () => {
     translator = null;
     inputLang.disabled = false;
     outputLang.disabled = false;
-    logTranslator('Sessione cancellata');
-    logDetector('Sessione cancellata');
+    logTranslator('Session cleared');
+    logDetector('Session cleared');
   } else {
-    logTranslator('Sessione non disponibile');
+    logTranslator('Session not available');
   }
 
   if (languageDetector) {
     languageDetector.destroy();
     languageDetector = null;
-    logDetector('Sessione cancellata');
+    logDetector('Session cleared');
   } else {
-    logDetector('Sessione non disponibile');
+    logDetector('Session not available');
   }
 });
 

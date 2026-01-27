@@ -20,7 +20,7 @@ let summarizer: Summarizer | null = null;
 
 const initSummarizer = async (): Promise<Summarizer | null> => {
   if (!('Summarizer' in self)) {
-    logSummarizer('non disponibile nel browser');
+    logSummarizer('not available in browser');
     return null;
   }
 
@@ -31,16 +31,16 @@ const initSummarizer = async (): Promise<Summarizer | null> => {
     length: lengthSelect?.value as SummarizerLength,
   });
 
-  logSummarizer(`stato: ${availability}`);
+  logSummarizer(`status: ${availability}`);
   if (availability === 'unavailable') {
-    logSummarizer('non disponibile');
+    logSummarizer('not available');
     return null;
   }
 
-  // Disabilita le select dopo la creazione
+  // Disable selects after creation
   setSelectsEnabled(false);
 
-  logSummarizer(`Creazione summarizer con parametri: type=${summaryTypeSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
+  logSummarizer(`Creating summarizer with parameters: type=${summaryTypeSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
 
   return await Summarizer.create(
     {
@@ -53,7 +53,7 @@ const initSummarizer = async (): Promise<Summarizer | null> => {
       monitor(m) {
         m.addEventListener('downloadprogress', (e) => {
           const p = ((e.loaded / e.total) * 100).toFixed(0);
-          logSummarizer(`stato: ${availability} - caricamento: ${p}%`);
+          logSummarizer(`status: ${availability} - loading: ${p}%`);
         });
       },
     }
@@ -68,7 +68,7 @@ if (btn && input && output) {
       if (!summarizer) return;
     }
 
-    logSummarizer('Avvio summarizzazione...');
+    logSummarizer('Starting summarization...');
     const stream = summarizer.summarizeStreaming(input.value);
     output.innerHTML = '';
 
@@ -76,10 +76,10 @@ if (btn && input && output) {
       output.innerHTML += chunk;
     }
 
-    // facoltativo, se non lo facciamo il markdown non viene renderizzato correttamente
+    // optional, if we don't do this the markdown won't be rendered correctly
     output!.innerHTML = await marked.parse(output.innerHTML);
 
-    logSummarizer('Summarizzazione completata');
+    logSummarizer('Summarization completed');
   });
 }
 
@@ -89,11 +89,11 @@ if (destroyBtn) {
     if (summarizer) {
       summarizer.destroy();
       summarizer = null;
-      // Riabilita le select dopo la distruzione
+      // Re-enable selects after destruction
       setSelectsEnabled(true);
-      logSummarizer('Sessione cancellata');
+      logSummarizer('Session cleared');
     } else {
-      logSummarizer('Sessione non disponibile');
+      logSummarizer('Session not available');
     }
   });
 }

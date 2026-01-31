@@ -1,7 +1,6 @@
 import log from "../utils/logger";
 import { renderApiInfoHeader } from '../utils/api-info';
 
-// API Language Detector
 const input = document.querySelector<HTMLTextAreaElement>('#input')!;
 const output = document.querySelector<HTMLDivElement>('#output')!;
 const btn = document.querySelector<HTMLButtonElement>('#btn')!;
@@ -10,7 +9,6 @@ const context = 'Language Detector';
 
 let languageDetector: LanguageDetector | null = null;
 
-// Render API info header
 renderApiInfoHeader('language-detector');
 
 

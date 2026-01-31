@@ -2,7 +2,6 @@ import { marked } from 'marked';
 import { populateLanguageSelect } from '../utils/languages';
 import { renderApiInfoHeader } from '../utils/api-info';
 
-// API Summarizer
 const input = document.querySelector<HTMLTextAreaElement>('#input');
 const output = document.querySelector<HTMLDivElement>('#output');
 const btn = document.querySelector<HTMLButtonElement>('#btn');
@@ -17,7 +16,6 @@ if (outputLanguageSelect) {
   populateLanguageSelect(outputLanguageSelect, false, 'en');
 }
 
-// Render API info header
 renderApiInfoHeader('summarizer');
 
 let summarizer: Summarizer | null = null;
@@ -41,7 +39,6 @@ const initSummarizer = async (): Promise<Summarizer | null> => {
     return null;
   }
 
-  // Disable selects after creation
   setSelectsEnabled(false);
 
   logSummarizer(`Creating summarizer with parameters: type=${summaryTypeSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
@@ -49,8 +46,6 @@ const initSummarizer = async (): Promise<Summarizer | null> => {
   return await Summarizer.create(
     {
       outputLanguage: outputLanguageSelect?.value ?? 'en',
-      //sharedContext: 'context',
-      //expectedInputLanguages: ['en'],
       type: summaryTypeSelect?.value as SummarizerType,
       format: formatSelect?.value as SummarizerFormat,
       length: lengthSelect?.value as SummarizerLength,
@@ -80,7 +75,6 @@ if (btn && input && output) {
       output.innerHTML += chunk;
     }
 
-    // optional, if we don't do this the markdown won't be rendered correctly
     output!.innerHTML = await marked.parse(output.innerHTML);
 
     logSummarizer('Summarization completed');
@@ -93,7 +87,6 @@ if (destroyBtn) {
     if (summarizer) {
       summarizer.destroy();
       summarizer = null;
-      // Re-enable selects after destruction
       setSelectsEnabled(true);
       logSummarizer('Session cleared');
     } else {

@@ -1,5 +1,9 @@
 # Web API IA - Chrome Web AI APIs Overview
 
+> **Note:** This project is still in implementation. There may be bugs, and some behaviour or documentation may still be redefined or incomplete.
+
+**Try the app here:** [https://alessandrobertola.github.io/built-in-ai-examples/](https://alessandrobertola.github.io/built-in-ai-examples/)
+
 ## 🎯 Project Intent
 
 This project is a **collection of exercises and demonstrations** of the new **Chrome Web AI APIs** (Built-in AI APIs). The goal is to provide a practical and comprehensive overview of how to use AI APIs integrated directly into the Chrome browser, without the need for external servers or API keys.
@@ -13,8 +17,6 @@ The APIs use **Gemini Nano**, a lightweight language model that runs locally in 
 ## 📋 Requirements
 
 - **Node.js 18+** (for running the dev server and build)
-- **Chrome 131+** or **Edge 131+** (with Built-in AI support)
-- Gemini Nano model must be downloaded and installed in the browser
 - For more information: [Chrome AI APIs Documentation](https://developer.chrome.com/docs/ai/built-in-apis)
 
 ## 🌐 API availability & origin trials

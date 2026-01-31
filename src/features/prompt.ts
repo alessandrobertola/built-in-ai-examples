@@ -1,7 +1,6 @@
 import { marked } from "marked";
 import { renderApiInfoHeader } from '../utils/api-info';
 
-// API Prompt
 const input = document.querySelector<HTMLTextAreaElement>('#input');
 const output = document.querySelector<HTMLDivElement>('#output');
 const btn = document.querySelector<HTMLButtonElement>('#btn');
@@ -11,7 +10,6 @@ const info = document.querySelector<HTMLParagraphElement>('#info');
 
 let languageModel: LanguageModel | null = null;
 
-// Render API info header
 renderApiInfoHeader('prompt');
 
 const initPrompt = async (): Promise<LanguageModel | null> => {
@@ -64,7 +62,6 @@ if (btn && input && output) {
       output.innerHTML += chunk;
     }
 
-    // optional, if we don't do this the markdown won't be rendered correctly
     output!.innerHTML = await marked.parse(output.innerHTML);
 
     logPrompt('Prompt completed');

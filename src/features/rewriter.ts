@@ -2,7 +2,6 @@ import { marked } from 'marked';
 import { populateLanguageSelect } from '../utils/languages';
 import { renderApiInfoHeader } from '../utils/api-info';
 
-// API Rewriter
 const input = document.querySelector<HTMLTextAreaElement>('#input');
 const contextInput = document.querySelector<HTMLTextAreaElement>('#context');
 const output = document.querySelector<HTMLDivElement>('#output');
@@ -18,7 +17,6 @@ if (outputLanguageSelect) {
   populateLanguageSelect(outputLanguageSelect, false, 'en');
 }
 
-// Render API info header
 renderApiInfoHeader('rewriter');
 
 let rewriter: Rewriter | null = null;
@@ -42,7 +40,6 @@ const initRewriter = async (): Promise<Rewriter | null> => {
     return null;
   }
 
-  // Disable selects after creation
   setSelectsEnabled(false);
 
   logRewriter(`Creating rewriter with parameters: tone=${toneSelect?.value}, length=${lengthSelect?.value}, format=${formatSelect?.value}, outputLanguage=${outputLanguageSelect?.value}`);
@@ -88,7 +85,6 @@ if (btn && input && output) {
       output.innerHTML += chunk;
     }
 
-    // optional, if we don't do this the markdown won't be rendered correctly
     output!.innerHTML = await marked.parse(output.innerHTML);
 
     logRewriter('Rewrite completed');
@@ -100,7 +96,6 @@ if (destroyBtn) {
     if (rewriter) {
       rewriter.destroy();
       rewriter = null;
-      // Re-enable selects after destruction
       setSelectsEnabled(true);
       logRewriter('Session cleared');
     } else {

@@ -1,11 +1,9 @@
-// API Proofreader
 import { renderApiInfoHeader } from '../utils/api-info';
 
 const input = document.querySelector<HTMLTextAreaElement>('#input');
 const output = document.querySelector<HTMLDivElement>('#output');
 const btn = document.querySelector<HTMLButtonElement>('#btn');
 
-// Render API info header
 renderApiInfoHeader('proofreader');
 
 if (btn && input && output) {

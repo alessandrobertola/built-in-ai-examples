@@ -1,4 +1,3 @@
-// API Translator
 import { populateLanguageSelect } from '../utils/languages';
 import { renderApiInfoHeader } from '../utils/api-info';
 
@@ -11,13 +10,11 @@ const destroyBtn = document.querySelector<HTMLButtonElement>('#destroy-btn')!;
 const inputLang = document.querySelector<HTMLSelectElement>('#input-lang')!;
 const outputLang = document.querySelector<HTMLSelectElement>('#output-lang')!;
 
-// Exportable translateText function
 export async function translateText(
   text: string,
   sourceLanguage: string = 'auto',
   targetLanguage: string = 'en'
 ): Promise<string> {
-  // Auto-detect language if needed
   let detectedSourceLanguage = sourceLanguage;
   if (sourceLanguage === 'auto') {
     if (!('LanguageDetector' in self)) {
@@ -35,7 +32,6 @@ export async function translateText(
     languageDetector.destroy();
   }
 
-  // Check if Translator is available
   if (!('Translator' in self)) {
     throw new Error('Translator not available in browser');
   }
@@ -49,14 +45,12 @@ export async function translateText(
     throw new Error(`Translation unavailable for ${detectedSourceLanguage} -> ${targetLanguage}`);
   }
 
-  // Create translator instance
   const translator = await Translator.create({
     sourceLanguage: detectedSourceLanguage,
     targetLanguage: targetLanguage,
   });
 
   try {
-    // Translate using streaming API
     const stream = translator.translateStreaming(text);
     let result = '';
     for await (const chunk of stream) {
@@ -64,16 +58,13 @@ export async function translateText(
     }
     return result;
   } finally {
-    // Clean up
     translator.destroy();
   }
 }
 
-// Populate selects with available languages
 populateLanguageSelect(inputLang, true, 'auto');
 populateLanguageSelect(outputLang, false, 'en');
 
-// Render API info header
 renderApiInfoHeader('translator');
 
 
@@ -158,7 +149,6 @@ btn.addEventListener('click', async () => {
   }
 
   if (!translator) {
-    // Initialize the translator if it hasn't been created yet
     translator = await initTranslator(inputLang.value, outputLang.value);
     if (!translator) return;
   }

@@ -33,7 +33,6 @@ body {
   position: relative;
 }
 
-/* GitHub Link */
 .github-link {
   position: fixed;
   top: 1.5rem;
@@ -251,7 +250,6 @@ button:active {
   transform: scale(0.98);
 }
 
-/* Navigation Menu */
 .nav-menu {
   margin-bottom: 2rem;
   text-align: left;
@@ -283,7 +281,6 @@ button:active {
   color: #60a5fa;
 }
 
-/* Menu principale */
 .subtitle {
   color: #94a3b8;
   margin-bottom: 2rem;
@@ -407,7 +404,6 @@ button:active {
   font-style: italic;
 }
 
-/* API Info Header */
 .api-info-header {
   display: flex;
   flex-direction: column;
@@ -575,7 +571,6 @@ button:active {
   margin-bottom: 0;
 }
 
-/* Mobile adjustments for API Info Header */
 @media (max-width: 768px) {
   .api-info-header {
     padding: 0.75rem;
@@ -662,7 +657,6 @@ button:active {
   }
 }
 
-/* Mobile Responsive Styles */
 @media (max-width: 768px) {
   body {
     align-items: flex-start;
@@ -713,7 +707,7 @@ button:active {
 
   textarea {
     height: 120px;
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
   }
 
   .exercise-card {
@@ -951,7 +945,6 @@ button:active {
   }
 }
 
-/* Additional mobile optimizations */
 @media (max-width: 768px) and (prefers-color-scheme: light) {
   .exercise-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
@@ -962,14 +955,12 @@ button:active {
   }
 }
 
-/* Prevent text size adjustment on iOS */
 @media screen and (max-width: 768px) {
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
   
-  /* Improve touch targets */
   .nav-link {
     min-height: 44px;
     display: flex;
@@ -981,7 +972,6 @@ button:active {
   }
 }
 
-/* Landscape mobile optimization */
 @media (max-width: 768px) and (orientation: landscape) {
   body {
     align-items: flex-start;

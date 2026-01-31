@@ -49,7 +49,6 @@ function createDocsIcon(): SVGSVGElement {
 }
 
 function createTrialIcon(): SVGSVGElement {
-  // Beaker/flask icon for experiment/trial
   return createSVGIcon([
     'M9.5 2A2.5 2.5 0 0 0 7 4.5v15a2.5 2.5 0 0 0 5 0v-15A2.5 2.5 0 0 0 9.5 2Z',
     'M19 8l-5-5',
@@ -101,13 +100,10 @@ export function renderApiInfoHeader(apiName: string, containerId: string = 'api-
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  // Clear container
   container.innerHTML = '';
 
-  // Create header container
   const header = createElement('div', 'api-info-header');
 
-  // Documentation link
   const docItem = createElement('div', 'api-info-item');
   const docLink = createLink(info.documentation, 'Documentation', 'api-info-link');
   const docIcon = createElement('span', 'api-info-icon');
@@ -119,7 +115,6 @@ export function renderApiInfoHeader(apiName: string, containerId: string = 'api-
   docItem.appendChild(docLink);
   header.appendChild(docItem);
 
-  // Status badge
   const statusItem = createElement('div', 'api-info-item');
   const statusBadge = createElement('span', `api-status-badge api-status-${info.status}`);
   if (info.status === 'origin-trial') {
@@ -131,12 +126,10 @@ export function renderApiInfoHeader(apiName: string, containerId: string = 'api-
   statusItem.appendChild(statusBadge);
   header.appendChild(statusItem);
 
-  // Origin trial warning
   if (info.status === 'origin-trial' && info.originTrial) {
     const warningItem = createElement('div', 'api-info-item api-warning');
     const warningContent = createElement('div', 'api-warning-content');
 
-    // Warning header
     const warningHeader = createElement('div', 'api-warning-header');
     const warningIcon = createElement('span', 'api-info-icon');
     warningIcon.appendChild(createWarningIcon());
@@ -144,7 +137,6 @@ export function renderApiInfoHeader(apiName: string, containerId: string = 'api-
     warningHeader.appendChild(createElement('span', '', info.originTrial.localOnlyWarning));
     warningContent.appendChild(warningHeader);
 
-    // Chrome flags
     const flagsContainer = createElement('div', 'api-flags-container');
     info.originTrial.chromeFlags.forEach(flag => {
       const flagLink = createLink(flag, flag, 'api-flag-link');
@@ -152,7 +144,6 @@ export function renderApiInfoHeader(apiName: string, containerId: string = 'api-
     });
     warningContent.appendChild(flagsContainer);
 
-    // Additional instructions
     if (info.originTrial.additionalInstructions.length > 0) {
       const instructionsList = createElement('ol', 'api-localhost-instructions');
       info.originTrial.additionalInstructions.forEach(instruction => {

@@ -1,11 +1,6 @@
-# Deploy su GitHub Pages
-# Si attiva su push su main o manualmente
-
 name: Deploy
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

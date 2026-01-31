@@ -364,13 +364,6 @@ These APIs are ideal for:
 - **Virtual assistants**: natural language interactions
 - **Offline applications**: AI functionality without internet connection
 
-## ⚠️ Important Notes
-
-1. **Availability**: APIs are only available on Chrome/Edge 131+ with Gemini Nano installed
-2. **Initial download**: The model is downloaded the first time (may take time)
-3. **Resources**: The model uses device memory and resources
-4. **Limitations**: APIs have limitations compared to more powerful cloud models, but offer privacy and speed
-
 ## 📝 License
 
 This project is an educational example to demonstrate the usage of Chrome Web AI APIs.

@@ -10,8 +10,7 @@
   },
   "devDependencies": {
     "typescript": "~5.9.3",
-    "vite": "^7.2.4",
-    "vite-plugin-md-to-html": "^0.0.18"
+    "vite": "^7.2.4"
   },
   "dependencies": {
     "@types/dom-chromium-ai": "^0.0.11",

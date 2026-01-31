@@ -1,0 +1,79 @@
+{
+  "writer": {
+    "documentation": "https://developer.chrome.com/docs/ai/writer-api",
+    "status": "origin-trial",
+    "originTrial": {
+      "localOnlyWarning": "This API is only available in origin trial and works only with localhost. To use it, you need to enable the following Chrome flags:",
+      "chromeFlags": [
+        "chrome://flags/#optimization-guide-on-device-model",
+        "chrome://flags/#prompt-api-for-gemini-nano-multimodal-input",
+        "chrome://flags/#writer-api-for-gemini-nano"
+      ],
+      "additionalInstructions": [
+        "Set chrome://flags/#optimization-guide-on-device-model to Enabled",
+        "Set the following flags to Enabled or Enabled Multilingual:",
+        "Click Relaunch or restart Chrome"
+      ]
+    }
+  },
+  "translator": {
+    "documentation": "https://developer.chrome.com/docs/ai/translator-api",
+    "status": "open"
+  },
+  "summarizer": {
+    "documentation": "https://developer.chrome.com/docs/ai/summarizer-api",
+    "status": "open"
+  },
+  "rewriter": {
+    "documentation": "https://developer.chrome.com/docs/ai/rewriter-api",
+    "status": "origin-trial",
+    "originTrial": {
+      "localOnlyWarning": "This API is only available in origin trial and works only with localhost. To use it, you need to enable the following Chrome flags:",
+      "chromeFlags": [
+        "chrome://flags/#optimization-guide-on-device-model",
+        "chrome://flags/#prompt-api-for-gemini-nano-multimodal-input",
+        "chrome://flags/#writer-api-for-gemini-nano"
+      ],
+      "additionalInstructions": [
+        "Set chrome://flags/#optimization-guide-on-device-model to Enabled",
+        "Set the following flags to Enabled or Enabled Multilingual:",
+        "Click Relaunch or restart Chrome"
+      ]
+    }
+  },
+  "language-detector": {
+    "documentation": "https://developer.chrome.com/docs/ai/language-detection",
+    "status": "open"
+  },
+  "proofreader": {
+    "documentation": "https://developer.chrome.com/docs/ai/proofreader-api",
+    "status": "origin-trial",
+    "originTrial": {
+      "localOnlyWarning": "This API is only available in origin trial and works only with localhost. To use it, you need to enable the following Chrome flags:",
+      "chromeFlags": [
+        "chrome://flags/#optimization-guide-on-device-model",
+        "chrome://flags/#prompt-api-for-gemini-nano-multimodal-input",
+        "chrome://flags/#proofreader-api-for-gemini-nano"
+      ],
+      "additionalInstructions": [
+        "Set the following flags to Enabled:",
+        "Click Relaunch or restart Chrome. If you encounter errors, troubleshoot localhost."
+      ]
+    }
+  },
+  "prompt": {
+    "documentation": "https://developer.chrome.com/docs/ai/prompt-api",
+    "status": "origin-trial",
+    "originTrial": {
+      "localOnlyWarning": "This API is only available in origin trial and works only with localhost. To use it, you need to enable the following Chrome flags:",
+      "chromeFlags": [
+        "chrome://flags/#optimization-guide-on-device-model",
+        "chrome://flags/#prompt-api-for-gemini-nano-multimodal-input"
+      ],
+      "additionalInstructions": [
+        "Set the following flags to Enabled:",
+        "Click Relaunch or restart Chrome. If you encounter errors, troubleshoot localhost."
+      ]
+    }
+  }
+}

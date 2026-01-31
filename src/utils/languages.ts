@@ -1,4 +1,4 @@
-import languagesData from './languages.json';
+import languagesData from '../assets/languages.json';
 
 export interface Language {
   code: string;
@@ -15,7 +15,7 @@ export function populateLanguageSelect(
   let options = '';
 
   if (includeAuto) {
-    options += `<option value="auto" ${selectedCode === 'auto' ? 'selected' : ''}>Rileva lingua da solo</option>`;
+    options += `<option value="auto" ${selectedCode === 'auto' ? 'selected' : ''}>Detect language automatically</option>`;
   }
 
   for (const lang of LANGUAGES) {

@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import { renderApiInfoHeader } from '../utils/api-info';
 
 // API Prompt
 const input = document.querySelector<HTMLTextAreaElement>('#input');
@@ -9,6 +10,9 @@ const info = document.querySelector<HTMLParagraphElement>('#info');
 
 
 let languageModel: LanguageModel | null = null;
+
+// Render API info header
+renderApiInfoHeader('prompt');
 
 const initPrompt = async (): Promise<LanguageModel | null> => {
   if (!('LanguageModel' in self)) {

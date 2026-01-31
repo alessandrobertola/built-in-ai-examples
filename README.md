@@ -16,6 +16,32 @@ The APIs use **Gemini Nano**, a lightweight language model that runs locally in 
 - Gemini Nano model must be downloaded and installed in the browser
 - For more information: [Chrome AI APIs Documentation](https://developer.chrome.com/docs/ai/built-in-apis)
 
+## 🌐 API availability & origin trials
+
+Some Built-in AI APIs are **open**, while others are still in **origin trial** and only work on **localhost with specific Chrome flags enabled**.
+
+- **Open APIs (no flags required)**  
+  - LanguageDetector  
+  - Translator  
+  - Summarizer  
+
+- **Origin trial APIs (localhost + flags required)**  
+  - Prompt (LanguageModel / Prompt API)  
+  - Writer  
+  - Rewriter  
+  - Proofreader  
+
+To run the origin trial APIs on `http://localhost` in Chrome, enable these flags and then restart Chrome:
+
+```text
+chrome://flags/#optimization-guide-on-device-model
+chrome://flags/#prompt-api-for-gemini-nano-multimodal-input
+chrome://flags/#writer-api-for-gemini-nano
+chrome://flags/#proofreader-api-for-gemini-nano
+```
+
+Each exercise page shows an **API info header** (documentation link + status badge + origin-trial instructions) generated from `src/assets/api-info.json` and `src/utils/api-info.ts`.
+
 ## 🚀 Getting Started
 
 ```bash
@@ -290,9 +316,12 @@ web-api-ia/
 │   │   ├── rewriter.ts
 │   │   ├── prompt.ts
 │   │   └── proofreader.ts
+│   ├── assets/         # Static JSON configuration
+│   │   ├── api-info.json
+│   │   └── languages.json
 │   ├── utils/          # Utilities and helpers
+│   │   ├── api-info.ts
 │   │   ├── languages.ts
-│   │   ├── languages.json
 │   │   └── logger.ts
 │   └── main.ts
 └── index.html          # Main menu

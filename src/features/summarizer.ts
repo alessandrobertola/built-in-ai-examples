@@ -1,5 +1,6 @@
 import { marked } from 'marked';
 import { populateLanguageSelect } from '../utils/languages';
+import { renderApiInfoHeader } from '../utils/api-info';
 
 // API Summarizer
 const input = document.querySelector<HTMLTextAreaElement>('#input');
@@ -15,6 +16,9 @@ const outputLanguageSelect = document.querySelector<HTMLSelectElement>('#output-
 if (outputLanguageSelect) {
   populateLanguageSelect(outputLanguageSelect, false, 'en');
 }
+
+// Render API info header
+renderApiInfoHeader('summarizer');
 
 let summarizer: Summarizer | null = null;
 

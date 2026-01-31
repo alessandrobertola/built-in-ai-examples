@@ -1,5 +1,6 @@
 // API Translator
 import { populateLanguageSelect } from '../utils/languages';
+import { renderApiInfoHeader } from '../utils/api-info';
 
 const input = document.querySelector<HTMLTextAreaElement>('#input')!;
 const output = document.querySelector<HTMLDivElement>('#output')!;
@@ -71,6 +72,9 @@ export async function translateText(
 // Populate selects with available languages
 populateLanguageSelect(inputLang, true, 'auto');
 populateLanguageSelect(outputLang, false, 'en');
+
+// Render API info header
+renderApiInfoHeader('translator');
 
 
 let translator: Translator | null = null;

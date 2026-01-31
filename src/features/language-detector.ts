@@ -1,4 +1,5 @@
 import log from "../utils/logger";
+import { renderApiInfoHeader } from '../utils/api-info';
 
 // API Language Detector
 const input = document.querySelector<HTMLTextAreaElement>('#input')!;
@@ -8,6 +9,9 @@ const destroyBtn = document.querySelector<HTMLButtonElement>('#destroy-btn')!;
 const context = 'Language Detector';
 
 let languageDetector: LanguageDetector | null = null;
+
+// Render API info header
+renderApiInfoHeader('language-detector');
 
 
 const initLanguageDetector = async (): Promise<LanguageDetector | null> => {

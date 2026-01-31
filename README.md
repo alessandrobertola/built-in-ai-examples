@@ -12,13 +12,27 @@ The APIs use **Gemini Nano**, a lightweight language model that runs locally in 
 
 ## 📋 Requirements
 
+- **Node.js 18+** (for running the dev server and build)
 - **Chrome 131+** or **Edge 131+** (with Built-in AI support)
 - Gemini Nano model must be downloaded and installed in the browser
 - For more information: [Chrome AI APIs Documentation](https://developer.chrome.com/docs/ai/built-in-apis)
 
 ## 🌐 API availability & origin trials
 
-Some Built-in AI APIs are **open**, while others are still in **origin trial** and only work on **localhost with specific Chrome flags enabled**.
+Some Built-in AI APIs are **open** (generally available), while others are still in **origin trial** (experimental) and only work on **localhost with specific Chrome flags enabled**.
+
+### What is an origin trial?
+
+An **origin trial** is a way for Chrome to ship new or experimental features to developers before a full release. APIs in origin trial:
+
+- Are **experimental** and may change before becoming stable
+- Allow Chrome to gather feedback and iterate on the API design
+- Are typically **restricted to localhost** (or enrolled origins) so they are not exposed to all websites yet
+- Require **Chrome flags** to be enabled when testing locally, unless you register your origin in the [Chrome Origin Trials](https://developer.chrome.com/docs/web-platform/origin-trials/) program
+
+Once an API graduates from origin trial, it becomes **open** and works without flags on supported browsers.
+
+### API status in this project
 
 - **Open APIs (no flags required)**  
   - LanguageDetector  
@@ -31,6 +45,8 @@ Some Built-in AI APIs are **open**, while others are still in **origin trial** a
   - Rewriter  
   - Proofreader  
 
+### Enabling origin trial APIs locally
+
 To run the origin trial APIs on `http://localhost` in Chrome, enable these flags and then restart Chrome:
 
 ```text
@@ -40,6 +56,10 @@ chrome://flags/#writer-api-for-gemini-nano
 chrome://flags/#proofreader-api-for-gemini-nano
 ```
 
+**Steps:** set each flag to **Enabled** (or **Enabled Multilingual** where available), then click **Relaunch** or restart Chrome. The APIs will then be available when you open the app from `http://localhost` (e.g. `http://localhost:5173` with `npm run dev`).
+
+For more details: [Chrome Origin Trials](https://developer.chrome.com/docs/web-platform/origin-trials/).
+
 Each exercise page shows an **API info header** (documentation link + status badge + origin-trial instructions) generated from `src/assets/api-info.json` and `src/utils/api-info.ts`.
 
 ## 🚀 Getting Started
@@ -48,12 +68,17 @@ Each exercise page shows an **API info header** (documentation link + status bad
 # Install dependencies
 npm install
 
-# Start development server
+# Start development server (Vite dev server with HMR)
 npm run dev
 
 # Build for production
 npm run build
+
+# Preview production build locally
+npm run preview
 ```
+
+**Tech stack**: Vite 7, TypeScript 5.9, [Chrome Built-in AI types](https://www.npmjs.com/package/@types/dom-chromium-ai).
 
 ## 📚 Web APIs Overview
 
@@ -307,6 +332,7 @@ web-api-ia/
 │   ├── rewriter.html
 │   ├── prompt.html
 │   └── proofreader.html
+├── public/             # Static assets (e.g. favicon)
 ├── src/
 │   ├── features/       # TypeScript implementation of each API
 │   │   ├── translator.ts
@@ -323,6 +349,7 @@ web-api-ia/
 │   │   ├── api-info.ts
 │   │   ├── languages.ts
 │   │   └── logger.ts
+│   ├── style.css
 │   └── main.ts
 └── index.html          # Main menu
 ```
